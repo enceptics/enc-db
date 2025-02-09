@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New User Interest Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        .header {
+            background-color: #773697;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .button {
+            display: inline-block;
+            background-color: #773697;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            padding: 10px;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            New User Interest Submission
+        </div>
+        <div class="content">
+            <p>Dear Admin,</p>
+            <p>A user has submitted an interest request. Here are the details:</p>
+            <ul>
+                <li><strong>Name:</strong> {{ user_name }}</li>
+                <li><strong>Email:</strong> {{ user_email }}</li>
+                <li><strong>Interests:</strong> {{ interests|join:", " }}</li>
+            </ul>
+            <p>The relevant managers have been notified and will take the necessary action.</p>
+            <p>You can review the details and track updates via the admin dashboard.</p>
+            <p>
+                <a href="https://enceptics.com" class="button">View Submission</a>
+            </p>
+            <p>If you need further assistance, feel free to reach out.</p>
+            <p>Best regards,</p>
+            <p><strong>Enceptics Team</strong></p>
+        </div>
+        <div class="footer">
+            &copy; 2025 Enceptics. All rights reserved. | <a href="https://enceptics.com">Visit Website</a>
+        </div>
+    </div>
+</body>
+</html>

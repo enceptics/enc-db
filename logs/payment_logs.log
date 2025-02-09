@@ -1,0 +1,6 @@
+import logging
+
+logger = logging.getLogger('payment_log.log')
+
+# Log a message
+logger.info('This is a payment-related log message')

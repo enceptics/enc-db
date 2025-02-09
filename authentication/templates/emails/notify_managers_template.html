@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #004080; /* Enceptics' primary color */
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            color: #333333;
+        }
+        .footer {
+            background-color: #f4f4f4;
+            color: #888888;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #004080; /* Enceptics' primary color */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Enceptics</h1>
+        </div>
+        <div class="content">
+            <p>Dear {{ recipient_name }},</p>
+            <p>{{ message_body }}</p>
+            <p>Best regards,<br>Enceptics Team</p>
+            <a href="{{ action_url }}" class="button">View Details</a>
+        </div>
+        <div class="footer">
+            &copy; {{ current_year }} Enceptics. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "enceptics/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "enceptics/wsgi.py"
+      }
+    ]
+}
