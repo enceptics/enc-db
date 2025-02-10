@@ -42,7 +42,7 @@ SITE_NAME = "Enceptics"
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = 'django-insecure-7tgcv33&!i&av(!mc1$zlwa#@db5jb!-ir0lb%*=3$63tkc8)s'
 DEBUG = True
-ALLOWED_HOSTS = ['enceptics.com', '127.0.0.1', '127.0.0.1:8000', 'enceptics.onrender.com', 'enc-db.onrender.com']
+ALLOWED_HOSTS = ['enceptics.com', '127.0.0.1', '127.0.0.1:8000', 'enceptics.onrender.com', 'enc-db.onrender.com', 'mysite-poex.onrender.com']
 
 # Paypal settings
 PAYPAL_SANDBOX_CLIENT_ID = '222'
