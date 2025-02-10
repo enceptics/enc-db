@@ -1,20 +1,20 @@
 databases:
-  - name: enceptics
+  - name: mysitedb
     plan: free
-    databaseName: enceptics
-    user: enceptics
+    databaseName: mysite
+    user: mysite
 
 services:
   - type: web
     plan: free
-    name: enceptics
+    name: mysite
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn enceptics.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: encepticsdb
+          name: mysitedb
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
