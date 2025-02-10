@@ -211,12 +211,28 @@ JWT_AUTH = {
 #     }
 # }
 
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Replace this value with your local database's connection string.
+#         # default='postgresql://postgres:postgres@localhost:5432/enceptics',
+#         default='postgresql://enceptics:du7JuragRMaZc1wXPy3pedC6EKn3LBZ0@dpg-cukgjbqn91rc73arehdg-a:5432/enceptics_db',
+#         conn_max_age=600
+#     )
+# }
+
+
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/enceptics',
-        conn_max_age=600
-    )
+    "default": dj_database_url.parse('postgresql://enceptics_database_user:mUrNZ03cmEmJLgu419Rvu65IZnSp2ymN@dpg-cubji95svqrc73c7lgdg-a.oregon-postgres.render.com:5432/enceptics_database')
+}
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        'LOCATION': os.path.join(BASE_DIR, 'media'),  # Directory for media files
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",  # For serving static files efficiently
+    },
 }
 
 AUTHENTICATION_BACKENDS = (

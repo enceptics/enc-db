@@ -28915,3 +28915,21 @@ Traceback (most recent call last):
   File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 300, in get_queryset
     if user.role not in ['property_manager', 'manager']:
 AttributeError: 'AnonymousUser' object has no attribute 'role'
+INFO 2025-02-10 01:14:18,747 autoreload Watching for file changes with StatReloader
+INFO 2025-02-10 01:16:44,443 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-10 01:16:45,576 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-10 08:01:17,417 base view's ManagerPlaceViewset raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 300, in get_queryset
+    if user.role not in ['property_manager', 'manager']:
+AttributeError: 'AnonymousUser' object has no attribute 'role'
+WARNING 2025-02-10 08:01:17,488 base view's ManagerPlaceViewset raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 300, in get_queryset
+    if user.role not in ['property_manager', 'manager']:
+AttributeError: 'AnonymousUser' object has no attribute 'role'
+WARNING 2025-02-10 08:01:28,508 log Not Found: /favicon.ico
