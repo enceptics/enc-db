@@ -108,11 +108,13 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://enceptics.com',
+    'https://pascal-owilly-portfolio.vercel.app'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
     'https://enceptics.com',
+    'https://pascal-owilly-portfolio.vercel.app',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
