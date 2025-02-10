@@ -221,8 +221,17 @@ JWT_AUTH = {
 # }
 
 
+# DATABASES = {
+#     "default": dj_database_url.parse('postgresql://enceptics_database_user:mUrNZ03cmEmJLgu419Rvu65IZnSp2ymN@dpg-cubji95svqrc73c7lgdg-a.oregon-postgres.render.com:5432/enceptics_database')
+# }
+
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    "default": dj_database_url.parse('postgresql://enceptics_database_user:mUrNZ03cmEmJLgu419Rvu65IZnSp2ymN@dpg-cubji95svqrc73c7lgdg-a.oregon-postgres.render.com:5432/enceptics_database')
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://postgres:postgres@localhost:5432/enceptics',
+        conn_max_age=600
+    )
 }
 
 STORAGES = {
