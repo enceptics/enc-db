@@ -241,8 +241,8 @@ class PlaceViewset(viewsets.ModelViewSet):
         Assign the logged-in user to the manager field.
         """
         user = self.request.user
-        # if user.role not in ['property_manager', 'manager']:
-        #     raise PermissionDenied("You do not have permission to add a place.")
+        if user.role not in ['property_manager', 'manager']:
+            raise PermissionDenied("You do not have permission to add a place.")
         # Assign the current user as the manager
         serializer.save(manager=user)
 
