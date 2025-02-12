@@ -758,7 +758,7 @@ class PesapalPaymentAPIView(APIView):
 
         pesapal_button_html = f'''
         <form action="{pesapal_response['redirect_url']}" method="POST">
-            <button type="submit" class="pesapal-button">Pay with Pesapal</button>
+            <button type="submit" class="pesapal-button">Proceed to checkout</button>
         </form>
         '''
 
