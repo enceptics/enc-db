@@ -13,7 +13,7 @@ from .models import User
 class CustomUserAdmin(UserAdmin):
     model = User
     list_display = ['email', 'first_name', 'last_name', 'role', 'is_active']
-    list_filter = ['is_active', 'role']
+    list_filter = ['role']
     search_fields = ['email', 'first_name', 'last_name']
     ordering = ['email']
 

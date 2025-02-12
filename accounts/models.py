@@ -9,7 +9,7 @@ from django.core.validators import EmailValidator
 
 from django.contrib.auth.models import AbstractUser
 
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -39,13 +39,10 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
-    def save(self, *args, **kwargs):
-        if self.is_superuser and self.role != self.SUPERUSER:
-            raise ValueError("A superuser must have the role 'SUPERUSER'.")
-        super().save(*args, **kwargs)
+    def get_by_natural_key(self, email):  # 🔹 Ensure this is implemented
+        return self.get(email=email)
 
-
-class User(AbstractUser):
+class User(AbstractBaseUser, PermissionsMixin):
     SUPERUSER = 'superuser'
     CUSTOMER = 'customer'
     PROPERTY_MANAGER = 'property_manager'
@@ -59,6 +56,7 @@ class User(AbstractUser):
         (MANAGER, 'Manager'),
         (SUB_MANAGER, 'Sub-Manager'),
     ]
+    
     username = None  
     role = models.CharField(max_length=255, choices=ROLE_CHOICES, default=CUSTOMER)
     first_name = models.CharField(max_length=30, blank=True, null=True)
@@ -67,6 +65,10 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, validators=[EmailValidator()], blank=True, null=True)
     is_archived = models.BooleanField(default=False)
     date_joined = models.DateTimeField(null=True, blank=True)
+
+    is_active = models.BooleanField(default=True)  # ✅ Important for login
+    is_staff = models.BooleanField(default=False)  # ✅ Required for admin access
+    is_superuser = models.BooleanField(default=False)  # ✅ Required for superusers
 
     # Override related names to avoid clashes
     groups = models.ManyToManyField(
@@ -84,10 +86,11 @@ class User(AbstractUser):
         verbose_name='user permissions',
     )
 
-    # Set email as the unique identifier for authentication
-    USERNAME_FIELD = 'email'  # This tells Django to use 'email' as the primary identifier
-    REQUIRED_FIELDS = []  # Do not include 'email' in required fields
+    objects = CustomUserManager()  # Ensure the manager is explicitly set
 
+    # Set email as the unique identifier for authentication
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def get_full_name(self):
         full_name = f"{self.first_name} {self.last_name}".strip()
