@@ -1,10 +1,16 @@
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
-from allauth.utils import email_address_exists
+# from allauth.account.utils import email_address_exists
 from rest_framework import serializers
 
 from .models import  About, Room, CheckIn, Place, PlaceInfo, Booking, Payment, Review, HeroSection
+
+from allauth.account.models import EmailAddress
+
+def email_address_exists(email):
+    return EmailAddress.objects.filter(email=email).exists()
+
 
 class CustomLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -161,3 +167,25 @@ class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ( 'desc', 'mission', 'vision',)
         model = About
+
+from django.utils import timezone
+from django.utils.dateformat import format
+from rest_framework import serializers
+from .models import Contract
+
+class ContractSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+    signed_at_human_readable = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Contract
+        fields = ['id', 'user', 'full_name', 'content', 'signed_at', 'signed_at_human_readable', 'is_signed', 'signature', 'contract_image']
+        read_only_fields = ['signed_at', 'is_signed']
+
+    def get_full_name(self, obj):
+        return f"{obj.user.first_name} {obj.user.last_name}".strip()
+
+    def get_signed_at_human_readable(self, obj):
+        if obj.signed_at:
+            return format(timezone.localtime(obj.signed_at), 'F j, Y, g:i a')  # Example: "January 10, 2024, 2:30 PM"
+        return None

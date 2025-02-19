@@ -56,22 +56,72 @@ class Follower(models.Model):
         return f"{self.follower.username} follows {self.user.username}"
 
 
+from django.db import models
+from django.conf import settings
+from django.core.mail import send_mail
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # BLOGPOSTS
+# Models with email notification on blog creation
+from django.db import models
+from django.core.mail import send_mail, EmailMessage
+from django.conf import settings
+
 class Blogs(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)
-    subtitle = models.CharField(max_length=255, null=True, blank=True)  # Optional subtitle
+    subtitle = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='blog_images/', null=True, blank=True)
     content = models.TextField(null=True, blank=True)
-    location = models.CharField(max_length=255, null=True, blank=True)  # Optional location
-    reading_time = models.IntegerField(null=True, blank=True)  # Estimated time in minutes
-    tags = models.CharField(max_length=255, null=True, blank=True)  # Comma-separated tags
-    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)  # Blog published date
-    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)  # Last updated date
+    reading_time = models.IntegerField(null=True, blank=True)
+    tags = models.CharField(max_length=255, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return self.title if self.title else "Untitled Blog"
 
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
 
+        # Send email only for new blog posts
+        if is_new:
+            self.send_new_blog_email()
 
+    def send_new_blog_email(self):
+        from .models import Subscription
 
+        subscribers = Subscription.objects.all()
+        subject = self.title
+
+        message = f"""
+        Hello,
+
+        We're excited to share our latest insights with you.
+
+        {self.subtitle if self.subtitle else ''}
+
+        {self.content[:300]}...
+
+        Explore the full article here: https://enceptics.com/blogs/{self.id}/
+
+        Thank you for being part of our community.
+
+        Best regards,
+        The Enceptics Team
+        """
+
+        recipient_list = [subscriber.email for subscriber in subscribers]
+
+        if recipient_list:
+            email = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL, bcc=recipient_list)
+            email.send()
+
+class Subscription(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email

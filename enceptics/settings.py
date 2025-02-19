@@ -1,9 +1,6 @@
 from pathlib import Path
 import os
 import datetime
-from decouple import config, Csv
-import dj_database_url
-
 import logging
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -88,9 +85,9 @@ INSTALLED_APPS = [
     "authentication.apps.AuthenticationConfig",
     'blog_posts.apps.BlogPostsConfig',
     'accounts.apps.AccountsConfig',
-    'destinations.apps.DestinationsConfig',
+    # 'destinations.apps.DestinationsConfig',
     'weather.apps.WeatherConfig',
-    'mpesa_payment.apps.MpesaPaymentConfig',
+    # 'mpesa_payment.apps.MpesaPaymentConfig',
     "rest_framework",
     "rest_framework.authtoken",
     "allauth",
@@ -100,8 +97,7 @@ INSTALLED_APPS = [
     "dj_rest_auth.registration",
     'rest_framework_swagger',
     'corsheaders',
-    'django_daraja',
-    'social_django',
+    # 'social_django',
 ]
 
 
@@ -157,7 +153,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -206,29 +202,29 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
 
-DATABASES = {
-    "default": dj_database_url.parse("postgresql://enceptics_79q5_user:4mqYWfDXWrFKhjoW8qjrvsP5TkMethgd@dpg-cum619hu0jms73bkcfpg-a.oregon-postgres.render.com/enceptics_79q5")
-}
+# DATABASES = {
+#     "default": dj_database_url.parse("postgresql://enceptics_79q5_user:4mqYWfDXWrFKhjoW8qjrvsP5TkMethgd@dpg-cum619hu0jms73bkcfpg-a.oregon-postgres.render.com/enceptics_79q5")
+# }
 
-STORAGES = {
-    'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
-        'LOCATION': os.path.join(BASE_DIR, 'media'),  # Directory for media files
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",  # For serving static files efficiently
-    },
-}
+# STORAGES = {
+#     'default': {
+#         'BACKEND': 'django.core.files.storage.FileSystemStorage',
+#         'LOCATION': os.path.join(BASE_DIR, 'media'),  # Directory for media files
+#     },
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",  # For serving static files efficiently
+#     },
+# }
 
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -263,7 +259,7 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')

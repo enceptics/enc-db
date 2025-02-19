@@ -14,6 +14,7 @@ from django.contrib.auth.models import AbstractUser
 from accounts.models import User
 from django.conf import settings
 from accounts.models import User
+from django.utils.timezone import now
 
 # booking
 
@@ -227,6 +228,17 @@ class About(models.Model):
     def __str__(self):
         return self.desc
 
+# Contract
+class Contract(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # Associate contract with user
+    content = models.TextField()  # Store the contract text
+    signed_at = models.DateTimeField(null=True, blank=True)  # Timestamp when signed
+    is_signed = models.BooleanField(default=False)  # Check if signed
+    signature = models.TextField(null=True, blank=True)  # Store signature (base64 or text)
+    contract_image = models.ImageField(upload_to='contracts/', null=True, blank=True)  
+
+    def __str__(self):
+        return f"Contract for {self.user.first_name} {self.user.first_name} - {self.user.email}- {'Signed' if self.is_signed else 'Pending'}"
 
 
 

@@ -11,7 +11,7 @@ from django.conf.urls.static import static
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from blog_posts.views import BlogPostViewSet, LikeViewSet, CommentViewSet, FollowerViewSet, BlogViewSet
+from blog_posts.views import BlogPostViewSet, LikeViewSet, CommentViewSet, FollowerViewSet, BlogViewSet, SubscriptionViewSet
 from accounts.views import ProfileViewSet
 from accounts.views import Profile, User, CustomRegisterView, UserViewSet, CustomUserDetailsView, CustomSignupView
 from authentication.views import PlaceViewset, PlaceInfoViewset, BookingViewSet, ReviewViewSet,ManagerPlaceViewset, HeroSectionView
@@ -31,6 +31,7 @@ router.register(r'reviews', ReviewViewSet)
 router.register(r'manager/places', ManagerPlaceViewset, basename='manager-places') 
 router.register(r'hero', HeroSectionView, basename='hero-section')
 router.register(r'blogs', BlogViewSet)
+router.register(r'subscriptions', SubscriptionViewSet)
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -47,7 +48,6 @@ schema_view = get_schema_view(
 urlpatterns = [
 
     path('weather/', include('weather.urls')),  # Include the weather app's URLs
-    path('mpesa-payments/', include('mpesa_payment.urls')),
 
     # Payments
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),

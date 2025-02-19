@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BlogPost, Like, Comment,Follower, Blogs
+from .models import BlogPost, Like, Comment,Follower, Blogs, Subscription
 
 class BlogPostSerializer(serializers.ModelSerializer):
     author_full_name = serializers.ReadOnlyField()
@@ -29,3 +29,8 @@ class BlogsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blogs
         fields = '__all__'
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
+        fields = ['email']

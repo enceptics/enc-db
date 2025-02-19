@@ -12,9 +12,7 @@ from .serializers import (AboutSerializer,
                             PaymentSerializer,
                             ReviewSerializer,
                             HeroSectionSerializer,
-
                          )
-
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework import status, filters
 from rest_framework.response import Response
@@ -23,7 +21,6 @@ from rest_framework.decorators import action  # Import the action decorator
 from .permissions import IsAuthorOrReadOnly
 from django.contrib.auth.decorators import login_required
 import requests
-import paypalrestsdk
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -34,7 +31,6 @@ from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
 import json
 import base64
-import paypalrestsdk
 import logging  # Import the logging module
 from datetime import datetime, timedelta
 from authentication.utils import make_paypal_payment,verify_paypal_payment
@@ -49,32 +45,26 @@ from rest_framework.response import Response
 from django.db.models import Q
 # Create a logger
 logger = logging.getLogger(__name__)
-
 class GoogleAuthCallbackView(APIView):
     def get(self, request):
         # Handle the Google authentication callback
         # Extract the token from the request
         token = request.GET.get('token')
-
         # Verify the token with Google
         response = requests.get(f'https://oauth2.googleapis.com/tokeninfo?id_token={token}')
         if response.status_code == 200:
             user_info = response.json()
             email = user_info.get('email')
-
             # Check if the user already exists
             user, created = User.objects.get_or_create(email=email)
-
             if created:
                 user.username = email.split('@')[0]
                 user.first_name = user_info.get('given_name', '')
                 user.last_name = user_info.get('family_name', '')
                 user.image = user_info.get('picture') 
                 user.save()
-
             # Generate or retrieve an auth token
             token, created = Token.objects.get_or_create(user=user)
-
             return Response(
                 {"token": token.key, "user_id": user.id, "email": user.email},
                 status=status.HTTP_200_OK,
@@ -84,8 +74,6 @@ class GoogleAuthCallbackView(APIView):
                 {"error": "Invalid token"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-
-
 class GetUserRole(APIView):
     def get(self, request):
         # Check if the user is authenticated
@@ -95,32 +83,25 @@ class GetUserRole(APIView):
             return Response({"role": user_role})
         else:
             return Response({"role": "anonymous"}, status=status.HTTP_401_UNAUTHORIZED)
-
-
 class HeroSectionView(viewsets.ModelViewSet):
     queryset = HeroSection.objects.all()  # Queryset to get all HeroSection instances
     serializer_class = HeroSectionSerializer  # Serializer to convert HeroSection objects to JSON
-
 # booking
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-
     def calculate_checkout_date(self, checkin_date):
         checkin_datetime = datetime.strptime(checkin_date, '%Y-%m-%d')
         checkout_datetime = checkin_datetime + timedelta(days=1)  # Adjust the number of days as needed
         return checkout_datetime.strftime('%Y-%m-%d')
-
     def calculate_extra_charges_for_kids(self):
         # Define the price per kid
         price_per_kid = 1000  # Adjust the price as needed
         # Extract the number of kids from the request data
         num_kids = self.request.data.get('numKids', 0)  # Default to 0 if not provided
-
         # Calculate extra charges for kids
         extra_charges_for_kids = num_kids * price_per_kid
         return extra_charges_for_kids
-
     def calculate_extra_charges_for_adults(self):
         # Define the price per adult
         price_per_adult = 3000  # Adjust the price as needed
@@ -129,22 +110,18 @@ class BookingViewSet(viewsets.ModelViewSet):
         # Subtract 1 for the default adult (you can adjust this logic if needed)
         extra_charges_for_adults = (num_adults - 1) * price_per_adult
         return extra_charges_for_adults
-
     def create(self, request, *args, **kwargs):
         try:
             data = request.data.copy()
             if 'checkin_date' in data and 'checkout_date' not in data:
                 # Calculate the checkout_date if it's missing
                 data['checkout_date'] = self.calculate_checkout_date(data['checkin_date'])
-
             # Ensure the user is authenticated
             if not self.request.user.is_authenticated:
                 return Response({"error": "User is not authenticated."}, status=status.HTTP_401_UNAUTHORIZED)
-
                 # Assign the user based on the currently logged-in user's ID
             data['user'] = self.request.user.id  # Use the currently logged-in user's ID
             # Extract the selected place ID from the request data
-
             place_id = data.get('place')
             # Check if the place with the given place_id exists
             try:
@@ -168,12 +145,9 @@ class BookingViewSet(viewsets.ModelViewSet):
             ExtraCharge.objects.create(booking=booking, type='Adults', amount=extra_charges_for_adults)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
             logging.debug(f"Data being sent to the backend: {data}")
-
-
         except Exception as e:
             logger.error(f"Error creating booking: {str(e)}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     def update(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
@@ -184,14 +158,11 @@ class BookingViewSet(viewsets.ModelViewSet):
         except Exception as e:
             logger.error(f"Error updating booking: {str(e)}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 # Existing view using the Payment model
 class PaymentListView(generics.ListCreateAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
-
     # Modify your create method as needed
-
 class IsAuthorOrReadOnly(permissions.BasePermission):
     """
     Custom permission to allow only the author of a place (manager or sub_manager) to edit or delete it.
@@ -202,8 +173,6 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
         # Only allow the manager or sub_manager to edit or delete
         # Ensure we check for None to prevent errors if manager or sub_manager is not set
         return (obj.manager == request.user or obj.sub_manager == request.user) if obj.manager or obj.sub_manager else False
-
-
 class PlaceViewset(viewsets.ModelViewSet):
     queryset = Place.objects.all().order_by('-id')
     serializer_class = PlaceSerializer
@@ -211,30 +180,24 @@ class PlaceViewset(viewsets.ModelViewSet):
     search_fields = ['name__icontains', 'price__icontains', 'description__icontains']
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthorOrReadOnly]
-
     @action(detail=False, methods=['GET'])
     def filter_by_category(self, request):
         category = request.query_params.get('category', '')
         if not category:
             return Response({"error": "Category parameter is required."}, status=status.HTTP_400_BAD_REQUEST)
-
         filtered_places = Place.objects.filter(category_type=category).order_by('-created_at')
         serializer = PlaceSerializer(filtered_places, many=True)
         return Response(serializer.data)
-
     @action(detail=False, methods=['GET'])
     def search(self, request):
         query = request.query_params.get('query', '')
         if not query:
             return Response({"error": "Query parameter is required."}, status=status.HTTP_400_BAD_REQUEST)
-
         results = Place.objects.filter(
             Q(name__icontains=query) | Q(description__icontains=query)
         ).order_by('-created_at')
-
         serializer = PlaceSerializer(results, many=True)
         return Response(serializer.data)
-
     def perform_create(self, serializer):
         """
         Ensure only users with the roles 'PropertyManager' or 'Manager' can create a place.
@@ -245,7 +208,6 @@ class PlaceViewset(viewsets.ModelViewSet):
             raise PermissionDenied("You do not have permission to add a place.")
         # Assign the current user as the manager
         serializer.save(manager=user)
-
     def create(self, request, *args, **kwargs):
         try:
             serializer = self.get_serializer(data=request.data)
@@ -255,7 +217,6 @@ class PlaceViewset(viewsets.ModelViewSet):
         except Exception as e:
             logger.error(f"Error creating place: {str(e)}")  # Log the error
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     def update(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
@@ -266,7 +227,6 @@ class PlaceViewset(viewsets.ModelViewSet):
         except Exception as e:
             logger.error(f"Error updating place: {str(e)}")  # Log the error
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     def destroy(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
@@ -275,13 +235,10 @@ class PlaceViewset(viewsets.ModelViewSet):
         except Exception as e:
             logger.error(f"Error deleting place: {str(e)}")  # Log the error
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     # Optional: Handle exceptions globally
     def handle_exception(self, exc):
         # You can modify this function to handle errors in a more granular or global way
         return Response({"error": str(exc)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
 class ManagerPlaceViewset(viewsets.ReadOnlyModelViewSet):
     """
     Viewset for managers to see only the places they manage.
@@ -289,23 +246,18 @@ class ManagerPlaceViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = PlaceSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
-
     def get_queryset(self):
         """
         Return only the places managed by the logged-in manager.
         """
         user = self.request.user
-
         # Ensure only users with a manager role access this endpoint
         if user.role not in ['property_manager', 'manager']:
             return Place.objects.none()  # Return empty queryset if not a manager
-
         return Place.objects.filter(Q(manager=user) | Q(sub_manager=user)).order_by('-id')
-
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         places = []
-
         for place in queryset:
             # Retrieve statistics directly from the Place model
             places.append({
@@ -322,23 +274,18 @@ class ManagerPlaceViewset(viewsets.ReadOnlyModelViewSet):
                 "image": place.cover_image.url if place.cover_image else '',
                 "location": place.location,
             })
-
         return Response(places)
-
     def calculate_booking_trend(self, place):
         # Implement logic to calculate booking trends for the place
         # For example, you might want to aggregate bookings over time
         return [5, 7, 8, 6, 10, 12, 15]  # Placeholder for actual trend data
-
     def calculate_forecast(self, place):
         # Implement logic to calculate the revenue forecast for the place
         return [2000, 2500, 3000, 3200, 3500, 3700, 4000]  # Placeholder for actual forecast data
-
 class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all().order_by('-created_at')
     serializer_class = ReviewSerializer
     # permission_classes = [IsAuthenticated]
-
     # Retrieve all reviews for a specific place
     @action(detail=True, methods=['GET'])
     def get_reviews(self, request, pk=None):
@@ -351,34 +298,28 @@ class ReviewViewSet(viewsets.ModelViewSet):
             return Response({"error": "Place not found."}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({"error": f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     # Post a review for a specific place
     @action(detail=True, methods=['POST'])
     def add_review(self, request, pk=None):
         try:
             place = Place.objects.get(pk=pk)
             user = request.user
-
             data = request.data
             data['user'] = user.id  # Attach the authenticated user
             data['place'] = place.id  # Attach the place being reviewed
-
             serializer = ReviewSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
-
                 # Update place's rating and review count after adding the review
                 place.total_reviews += 1
                 place.average_rating = place.reviews.aggregate(Avg('rating'))['rating__avg'] or 0.0
                 place.save()
-
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         except Place.DoesNotExist:
             return Response({"error": "Place not found."}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({"error": f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     def update(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
@@ -388,7 +329,6 @@ class ReviewViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         except Exception as e:
             return Response({"error": f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     def destroy(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
@@ -396,13 +336,11 @@ class ReviewViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return Response({"error": f"An unexpected error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 class PlaceInfoViewset(viewsets.ModelViewSet):
     queryset = PlaceInfo.objects.all().order_by('-id')
     serializer_class = PlaceInfoSerializer
     # authentication_classes = [TokenAuthentication]
     # permission_classes = [IsAuthenticated]
-
 class CheckoutView(APIView):
     def post(self, request):
         room = get_object_or_404(Room, pk=request.data['pk'])
@@ -410,14 +348,11 @@ class CheckoutView(APIView):
         print(checked_in_room)
         room.is_booked = False
         room.save()
-
         return Response({"Checkout Successful"}, status=status.HTTP_200_OK)
-
 class CheckedInView(generics.ListAPIView):
     # permission_classes = (IsAdminUser, )
     serializer_class = CheckinSerializer
     queryset = CheckIn.objects.order_by('-id')
-
 def email_confirm_redirect(request, key):
     return HttpResponseRedirect(
         f"{settings.EMAIL_CONFIRM_REDIRECT_BASE_URL}{key}/"
@@ -425,7 +360,6 @@ def email_confirm_redirect(request, key):
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
-
 from dj_rest_auth.views import PasswordResetView
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
@@ -433,13 +367,11 @@ from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.conf import settings
-
 class CustomPasswordResetView(PasswordResetView):
     def send_email(self, user):
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
         domain = "enceptics.com"
-
         # Construct the URL with your custom base URL
         url = f"https://{domain}/password-reset/confirm/?uidb64={uid}&token={token}"
         
@@ -452,28 +384,22 @@ class CustomPasswordResetView(PasswordResetView):
         }
         email = render_to_string(email_template_name, context)
         send_mail(subject, email, settings.DEFAULT_FROM_EMAIL, [user.email])
-
-
 from dj_rest_auth.views import PasswordResetConfirmView
 from django.http import HttpResponseRedirect
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import User
-
 # class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 #     def post(self, request, *args, **kwargs):
 #         # Call the parent method to handle the password reset
 #         super().post(request, *args, **kwargs)
-
 #         # If the password reset was successful, you can return a custom response
 #         return Response({"detail": "Password has been reset successfully."}, status=status.HTTP_200_OK)
-
 # def password_reset_confirm_redirect(request, uidb64, token):
 #     try:
 #         # Decode the uidb64 to get the user ID
 #         uid = urlsafe_base64_decode(uidb64).decode()
 #         user = User.objects.get(pk=uid)
-
 #         # Check if the token is valid
 #         if default_token_generator.check_token(user, token):
 #             # If valid, redirect to the confirmation page
@@ -486,24 +412,18 @@ from django.contrib.auth.models import User
 #     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
 #         # User not found or decoding error, redirect to an error page
 #         return HttpResponseRedirect("https://enceptics.com/password-reset/error/")
-
 # def create_password_reset_token(user):
 #     return default_token_generator.make_token(user)
-
 # def generate_password_reset_link(user):
 #     uidb64 = urlsafe_base64_encode(force_bytes(user.pk))  # Remove .decode()
 #     token = create_password_reset_token(user)
-
 #     # Ensure the correct URL pattern is used
 #     reset_link = f"https://enceptics.com/api/auth/password-reset/confirm/{uidb64}/{token}/"
 #     return reset_link
-
 #     # Ensure the base URL is correct
 #     reset_link = f"{settings.PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL}{uidb64}/{token}/"
 #     return reset_link
-
 # from django.core.mail import send_mail
-
 # def send_password_reset_email(user):
 #     reset_link = generate_password_reset_link(user)
 #     subject = "Hello from enceptics.com"
@@ -517,11 +437,9 @@ from django.contrib.auth.models import User
 #         [user.email],
 #         fail_silently=False,
 #     )
-
 # Updating PasswordResetRequestView to use strip_tags
 from django.utils.html import strip_tags
 from django.utils.encoding import force_bytes, force_str
-
 class PasswordResetRequestView(APIView):
     def post(self, request):
         email = request.data.get('email')
@@ -529,7 +447,6 @@ class PasswordResetRequestView(APIView):
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             return Response({'error': 'User with this email does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
-
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
         reset_url = f"{settings.PASSWORD_RESET_CONFIRM_REDIRECT_BASE_URL}{uid}/{token}/"
@@ -541,7 +458,6 @@ class PasswordResetRequestView(APIView):
         send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
         
         return Response({'message': 'Password reset email sent.'}, status=status.HTTP_200_OK)
-
 class PasswordResetConfirmView(APIView):
     def post(self, request, uidb64, token):
         try:
@@ -549,16 +465,13 @@ class PasswordResetConfirmView(APIView):
             user = User.objects.get(pk=uid)
         except (User.DoesNotExist, ValueError, TypeError, OverflowError):
             return Response({'error': 'Invalid token or user ID.'}, status=status.HTTP_400_BAD_REQUEST)
-
         if not default_token_generator.check_token(user, token):
             return Response({'error': 'Invalid token.'}, status=status.HTTP_400_BAD_REQUEST)
-
         new_password = request.data.get('new_password')
         user.set_password(new_password)
         user.save()
         
         return Response({'message': 'Password reset successful.'}, status=status.HTTP_200_OK)
-
 def booking_success(request):
     # Perform any necessary actions for a successful booking
     # For example, display a success message and render a template
@@ -568,85 +481,81 @@ def booking_failure(request):
     # For example, display a failure message and render a template
         return Response({'message': 'Booking failed'})
 
+
 # Paypal payment
+
 
 def paypalToken(client_ID, client_Secret):
 
-    url = "https://api.sandbox.paypal.com/v1/oauth2/token"
-    data = {
-                "client_id":client_ID,
-                "client_secret":client_Secret,
-                "grant_type":"client_credentials"
-            }
-    headers = {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": "Basic {0}".format(base64.b64encode((client_ID + ":" + client_Secret).encode()).decode())
-            }
+    pass
 
-    token = requests.post(url, data, headers=headers)
-    return token.json()['access_token']
-
-clientID = getattr(settings, 'PAYPAL_SANDBOX_CLIENT_ID')
-clientSecret = getattr(settings, 'PAYPAL_SANDBOX_CLIENT_SECRET')
-
+    # url = "https://api.sandbox.paypal.com/v1/oauth2/token"
+#     data = {
+#                 "client_id":client_ID,
+#                 "client_secret":client_Secret,
+#                 "grant_type":"client_credentials"
+#             }
+#     headers = {
+#                 "Content-Type": "application/x-www-form-urlencoded",
+#                 "Authorization": "Basic {0}".format(base64.b64encode((client_ID + ":" + client_Secret).encode()).decode())
+#             }
+#     token = requests.post(url, data, headers=headers)
+#     return token.json()['access_token']
+# clientID = getattr(settings, 'PAYPAL_SANDBOX_CLIENT_ID')
+# clientSecret = getattr(settings, 'PAYPAL_SANDBOX_CLIENT_SECRET')
 
 class PaypalPaymentView(APIView):
-    """
-    Endpoint for creating a PayPal payment URL.
-    """
-    def post(self, request, *args, **kwargs):
-        print("PaypalPaymentView is executed")
-        print(request.data)
-        # Fetch the relevant data from the request
-        place_id = request.data.get("id")
-
-        # Retrieve the associated Place object
-        place = get_object_or_404(Place, id=place_id)
-
-        # Extract the price from the Place object
-        price = place.price
-
-        formatted_price = "{:.2f}".format(price)
-        print("Price from Place object:", price)
-
-        # Perform PayPal payment request
-        status, payment_id, approved_url = make_paypal_payment(
-            formatted_price,
-            currency="USD",
-            return_url="https://enceptics.vercel.app//payment/status/success",
-            cancel_url="https://enceptics.vercel.app//payment/status/cancel/"
-        )
-
-        print("PayPal API Response:")
-        print(json.dumps({"status": status, "payment_id": payment_id, "approved_url": approved_url}, indent=2))
-
-        if status:
-            # Save payment information and set is_complete based on payment status
-            payment, created = Payment.objects.get_or_create(payment_id=payment_id)
-            payment.is_complete = True if payment.status == "approved" else False
-            payment.save()
-
-            # Return a response indicating success and the approved URL
-            return Response({"success": True, "msg": "Payment link has been successfully created", "approved_url": approved_url}, status=201)
-        else:
-            return Response({"success": False, "msg": "Authentication or payment failed"}, status=400)
+    pass
+    # """
+    # Endpoint for creating a PayPal payment URL.
+    # """
+    # def post(self, request, *args, **kwargs):
+    #     print("PaypalPaymentView is executed")
+    #     print(request.data)
+    #     # Fetch the relevant data from the request
+    #     place_id = request.data.get("id")
+    #     # Retrieve the associated Place object
+    #     place = get_object_or_404(Place, id=place_id)
+    #     # Extract the price from the Place object
+    #     price = place.price
+    #     formatted_price = "{:.2f}".format(price)
+    #     print("Price from Place object:", price)
+    #     # Perform PayPal payment request
+    #     status, payment_id, approved_url = make_paypal_payment(
+    #         formatted_price,
+    #         currency="USD",
+    #         return_url="https://enceptics.vercel.app//payment/status/success",
+    #         cancel_url="https://enceptics.vercel.app//payment/status/cancel/"
+    #     )
+    #     print("PayPal API Response:")
+    #     print(json.dumps({"status": status, "payment_id": payment_id, "approved_url": approved_url}, indent=2))
+    #     if status:
+    #         # Save payment information and set is_complete based on payment status
+    #         payment, created = Payment.objects.get_or_create(payment_id=payment_id)
+    #         payment.is_complete = True if payment.status == "approved" else False
+    #         payment.save()
+    #         # Return a response indicating success and the approved URL
+    #         return Response({"success": True, "msg": "Payment link has been successfully created", "approved_url": approved_url}, status=201)
+    #     else:
+    #         return Response({"success": False, "msg": "Authentication or payment failed"}, status=400)
 
 class PaypalValidatePaymentView(APIView):
+
+    pass
     """
     endpoint for validate payment
     """
-    permission_classes=[permissions.IsAuthenticated,]
-    def post(self, request, *args, **kwargs):
-        payment_id=request.data.get("payment_id")
-        payment_status=verify_paypal_payment(payment_id=payment_id)
-        if payment_status:
+#     permission_classes=[permissions.IsAuthenticated,]
+#     def post(self, request, *args, **kwargs):
+#         payment_id=request.data.get("payment_id")
+#         payment_status=verify_paypal_payment(payment_id=payment_id)
+#         if payment_status:
+#             return Response({"success":True,"msg":"payment approved"},status=200)
+#         else:
+#             return Response({"success":False,"msg":"payment failed or cancelled"},status=200)
 
-            return Response({"success":True,"msg":"payment approved"},status=200)
-        else:
-            return Response({"success":False,"msg":"payment failed or cancelled"},status=200)
 
 # Pesapal
-
 from django.conf import settings
 from django.http import JsonResponse
 from rest_framework.views import APIView
@@ -657,7 +566,6 @@ import requests
 import json
 import random
 from accounts.models import User  
-
 # Use environment-based base URL
 PESAPAL_ENV = settings.PESAPAL_ENV  # Define this in your Django settings
 BASE_URLS = {
@@ -665,8 +573,6 @@ BASE_URLS = {
     "live": "https://pay.pesapal.com/v3"
 }
 BASE_URL = BASE_URLS.get(PESAPAL_ENV, BASE_URLS["live"])
-
-
 def get_access_token():
     """Fetch Pesapal access token dynamically"""
     url = f"{BASE_URL}/api/Auth/RequestToken"
@@ -676,16 +582,12 @@ def get_access_token():
         "consumer_secret": 'so6meZv/gAO2hRbKalx1w44tTWI='
     }
     response = requests.post(url, json=data, headers=headers)
-
     print("Pesapal Token Response:", response.status_code, response.text)  # Debugging
-
     return response.json().get("token")
-
 def register_ipn():
     """Register IPN (Instant Payment Notification) URL"""
     token = get_access_token()
     print("Pesapal Access Token:", token)
-
     url = f"{BASE_URL}/api/URLSetup/RegisterIPN"
     headers = {
         "Accept": "application/json",
@@ -695,31 +597,23 @@ def register_ipn():
     data = {"url": settings.PESAPAL_IPN_URL, "ipn_notification_type": "POST"}
     response = requests.post(url, json=data, headers=headers)
     return response.json()
-
-
 from rest_framework.permissions import IsAuthenticated
 
 class PesapalPaymentAPIView(APIView):
     """Handles Pesapal payments"""
     permission_classes = [IsAuthenticated]  # Ensure user is authenticated
-
     def post(self, request):
         # Extract user from the request
         user = request.user
-
         # Ensure booking exists and fetch the place details
         booking = Booking.objects.filter(user=user).last()  # Fetch the latest booking for the user
         if not booking:
             return Response({"error": "No booking found for the user"}, status=400)
-
         place = booking.place  # Fetch place from the booking
-
         token = get_access_token()
         ipn_response = register_ipn()
         ipn_id = ipn_response.get("ipn_id")
-
         merchant_reference = random.randint(1, 1000000000000000000)
-
         # Construct order data dynamically
         order_data = {
             "id": str(merchant_reference),
@@ -739,7 +633,6 @@ class PesapalPaymentAPIView(APIView):
                 # "line_1": user.address  
             }
         }
-
         # Make request to Pesapal
         url = f"{BASE_URL}/api/Transactions/SubmitOrderRequest"
         headers = {
@@ -749,32 +642,24 @@ class PesapalPaymentAPIView(APIView):
         }
         response = requests.post(url, json=order_data, headers=headers)
         pesapal_response = response.json()
-
         # Debugging: Print full response
         print("Pesapal API Response:", pesapal_response) 
-
         if "redirect_url" not in pesapal_response:
             return Response({"error": "Failed to generate Pesapal payment link", "details": pesapal_response}, status=400)
-
         pesapal_button_html = f'''
         <form action="{pesapal_response['redirect_url']}" method="POST">
             <button type="submit" class="pesapal-button">Proceed to checkout</button>
         </form>
         '''
-
         return Response({"pesapal_button_html": pesapal_button_html})
-
 class PesapalTransactionStatusAPIView(APIView):
     """Check transaction status"""
     permission_classes = [AllowAny]
-
     def get(self, request):
         token = get_access_token()
         order_tracking_id = request.GET.get("OrderTrackingId")
-
         if not order_tracking_id:
             return Response({"error": "Missing OrderTrackingId"}, status=400)
-
         url = f"{BASE_URL}/api/Transactions/GetTransactionStatus?orderTrackingId={order_tracking_id}"
         headers = {
             "Accept": "application/json",
@@ -783,8 +668,6 @@ class PesapalTransactionStatusAPIView(APIView):
         }
         response = requests.get(url, headers=headers)
         return Response(response.json())
-
-
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def pesapal_ipn(request):
@@ -794,21 +677,17 @@ def pesapal_ipn(request):
         json.dump(data, log_file)
         log_file.write("\n")
     return Response({"message": "IPN received"}, status=200)
-
-
 # CONTACT US
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import json
-
 import json
 from django.http import JsonResponse
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-
 @csrf_exempt  # Disable CSRF for API (use proper authentication in production)
 def contact_us(request):
     if request.method == 'POST':
@@ -817,13 +696,10 @@ def contact_us(request):
             name = data.get('name')
             email = data.get('email')
             message = data.get('message')
-
             if not name or not email or not message:
                 return JsonResponse({'error': 'All fields are required.'}, status=400)
-
             subject = f"New Contact Us Message from {name}"
             recipients = ["pascalouma54@gmail.com", "owillypascal@gmail.com", "enceptics.vacay@gmail.com"]
-
             # **Admin Email Template (Styled)**
             admin_email_content = f"""
             <html>
@@ -855,7 +731,6 @@ def contact_us(request):
             </body>
             </html>
             """
-
             # **User Confirmation Email Template (Styled)**
             user_email_content = f"""
             <html>
@@ -889,7 +764,6 @@ def contact_us(request):
             </body>
             </html>
             """
-
             # **Send Admin Notification Email**
             admin_email_message = EmailMultiAlternatives(
                 subject,
@@ -899,7 +773,6 @@ def contact_us(request):
             )
             admin_email_message.attach_alternative(admin_email_content, "text/html")
             admin_email_message.send()
-
             # **Send User Confirmation Email**
             user_email_message = EmailMultiAlternatives(
                 "We've Received Your Message – Enceptics",
@@ -909,16 +782,11 @@ def contact_us(request):
             )
             user_email_message.attach_alternative(user_email_content, "text/html")
             user_email_message.send()
-
             return JsonResponse({'message': 'Message sent successfully!'}, status=200)
-
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
-
     return JsonResponse({'error': 'Invalid request method'}, status=405)
-
 # Custom Itenerary request
-
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -927,26 +795,21 @@ from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.conf import settings
 from .models import Place
-
 @csrf_exempt
 def notify_managers(request):
     if request.method != "POST":
         return JsonResponse({"error": "Invalid request method"}, status=405)
-
     try:
         data = json.loads(request.body or "{}")  # Ensure data is parsed safely
-
         user_name = data.get("name")
         user_email = data.get("email")
         selected_interests = data.get("interests", [])  # FIX: Ensure this is always a list
         
         if not user_name or not user_email or not selected_interests:
             return JsonResponse({"error": "Missing required fields"}, status=400)
-
         # Find managers related to the selected interests
         managers = Place.objects.filter(category_type__in=selected_interests).values_list('manager__email', 'sub_manager__email')
         manager_emails = {email for pair in managers for email in pair if email}  # Remove None values
-
         # Email content
         subject = "New User Interest Notification"
         context = {
@@ -957,23 +820,19 @@ def notify_managers(request):
         }
         html_content = render_to_string('emails/notify_managers_template.html', context)
         text_content = strip_tags(html_content)
-
         # Send email to all relevant managers
         if manager_emails:
             msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, list(manager_emails))
             msg.attach_alternative(html_content, "text/html")
             msg.send()
-
         # Send email to the system admin
         admin_context = context.copy()
         admin_context['recipient_name'] = 'Admin'
         admin_html_content = render_to_string('emails/notify_admin_template.html', admin_context)
         admin_text_content = strip_tags(admin_html_content)
-
         admin_msg = EmailMultiAlternatives(subject, admin_text_content, settings.DEFAULT_FROM_EMAIL, ["enceptics.vacay@gmail.com"])
         admin_msg.attach_alternative(admin_html_content, "text/html")
         admin_msg.send()
-
         # Email confirmation to the user
         user_subject = "Your Request Has Been Received"
         user_context = {
@@ -984,14 +843,122 @@ def notify_managers(request):
         }
         user_html_content = render_to_string('emails/user_confirmation_template.html', user_context)
         user_text_content = strip_tags(user_html_content)
-
         user_msg = EmailMultiAlternatives(user_subject, user_text_content, settings.DEFAULT_FROM_EMAIL, [user_email])
         user_msg.attach_alternative(user_html_content, "text/html")
         user_msg.send()
-
         return JsonResponse({"success": "Notifications sent successfully."})
-
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON data"}, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+# Contract
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from django.utils.timezone import now
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, FileResponse
+from reportlab.pdfgen import canvas
+import io
+import os
+from .models import Contract
+from .serializers import ContractSerializer
+class ContractDetailView(generics.RetrieveAPIView):
+    """
+    Retrieve the contract for the logged-in user.
+    Superusers can view all contracts.
+    """
+    serializer_class = ContractSerializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        user = self.request.user
+        if user.role == User.SUPERUSER:
+            return Contract.objects.all()  # Superusers can see all contracts
+        return Contract.objects.filter(user=user)  # Regular users see only their contracts
+    def get_object(self):
+        user = self.request.user
+        if user.role == User.SUPERUSER:
+            contract_id = self.kwargs.get('pk')  # Allow superusers to view any contract by ID
+            return get_object_or_404(Contract, id=contract_id)
+        return get_object_or_404(Contract, user=user)
+class SignContractView(generics.UpdateAPIView):
+    """
+    Sign the contract by submitting a signature and image.
+    """
+    serializer_class = ContractSerializer
+    permission_classes = [IsAuthenticated]
+    def update(self, request, *args, **kwargs):
+        contract = get_object_or_404(Contract, user=request.user)
+        if contract.is_signed:
+            return Response({"message": "Contract already signed."}, status=status.HTTP_400_BAD_REQUEST)
+        signature = request.data.get("signature")
+        contract_image = request.FILES.get("contract_image")  # Get the uploaded image
+        if not signature:
+            return Response({"error": "Signature is required."}, status=status.HTTP_400_BAD_REQUEST)
+        contract.signature = signature
+        contract.signed_at = now()
+        contract.is_signed = True
+        
+        # Save the contract image if provided
+        if contract_image:
+            contract.contract_image = contract_image
+        
+        contract.save()
+        return Response({"message": "Contract signed successfully."}, status=status.HTTP_200_OK)
+    def post(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+import io
+from django.http import FileResponse
+from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
+from reportlab.pdfgen import canvas
+from .models import Contract
+from .serializers import ContractSerializer
+from rest_framework.response import Response
+from django.utils.timezone import now
+class DownloadContractView(generics.RetrieveAPIView):
+    """
+    Generate and download a signed contract as a PDF.
+    """
+    permission_classes = [IsAuthenticated]
+    def get(self, request, *args, **kwargs):
+        contract = get_object_or_404(Contract, user=request.user)
+        if not contract.is_signed:
+            return Response({"error": "Contract not signed yet."}, status=status.HTTP_400_BAD_REQUEST)
+        # Generate PDF
+        buffer = io.BytesIO()
+        p = canvas.Canvas(buffer)
+        
+        p.setFont("Helvetica-Bold", 14)
+        p.drawString(100, 800, "Contract Agreement")
+        
+        p.setFont("Helvetica", 12)
+        p.drawString(100, 770, f"User: {request.user.username}")
+        p.drawString(100, 750, f"Signed At: {contract.signed_at.strftime('%Y-%m-%d %H:%M:%S')}")
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(100, 720, "Contract Terms:")
+        p.setFont("Helvetica", 10)
+        text_lines = contract.content.split("\n")  # Updated to use contract.content
+        y_position = 700
+        for line in text_lines:
+            p.drawString(100, y_position, line)
+            y_position -= 15
+        # Include the contract image if available
+        if contract.contract_image:
+            p.drawImage(contract.contract_image.path, 100, y_position - 150, width=400, height=200)  # Adjust dimensions as needed
+        p.setFont("Helvetica-Bold", 12)
+        p.drawString(100, y_position - 20, "Signature:")
+        p.setFont("Helvetica", 10)
+        p.drawString(100, y_position - 40, contract.signature or "No Signature Provided")
+        p.showPage()
+        p.save()
+        buffer.seek(0)
+        # Save PDF file to a static location
+        pdf_path = f"media/contracts/contract_{request.user.id}.pdf"
+        with open(pdf_path, "wb") as f:
+            f.write(buffer.getvalue())
+        # Save path to the model
+        contract.pdf_path = pdf_path
+        contract.save()
+        return FileResponse(open(pdf_path, "rb"), as_attachment=True, filename="Contract_Agreement.pdf")

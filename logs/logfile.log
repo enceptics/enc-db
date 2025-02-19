@@ -28992,3 +28992,1467 @@ Traceback (most recent call last):
 django.db.utils.OperationalError: no such table: accounts_user
 INFO 2025-02-12 11:31:31,623 autoreload Watching for file changes with StatReloader
 WARNING 2025-02-12 11:31:35,952 log Bad Request: /api/auth/password-reset/
+INFO 2025-02-13 09:08:37,330 autoreload Watching for file changes with StatReloader
+INFO 2025-02-13 09:09:25,863 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-13 09:09:30,274 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-13 09:09:37,306 log Method Not Allowed: /api/auth/google-login/
+WARNING 2025-02-13 09:09:37,764 log Not Found: /favicon.ico
+INFO 2025-02-13 13:51:05,814 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-13 13:51:13,446 log Unauthorized: /api/users/
+WARNING 2025-02-13 13:51:13,508 log Unauthorized: /api/users/
+WARNING 2025-02-13 13:51:13,521 log Unauthorized: /api/users/
+WARNING 2025-02-13 13:51:13,574 log Unauthorized: /api/users/
+INFO 2025-02-14 08:47:16,346 autoreload Watching for file changes with StatReloader
+INFO 2025-02-14 08:47:40,319 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-14 08:48:52,960 log Bad Request: /api/auth/login/
+INFO 2025-02-14 08:49:45,683 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-14 08:49:51,515 log Not Found: /favicon.ico
+ERROR 2025-02-14 10:26:10,428 log Internal Server Error: /api/auth/pesapal/payment/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 200, in _new_conn
+    sock = connection.create_connection(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1092, in _validate_conn
+    conn.connect()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 604, in connect
+    self.sock = sock = self._new_conn()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 207, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7023b930b520>: Failed to resolve 'pay.pesapal.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='pay.pesapal.com', port=443): Max retries exceeded with url: /v3/api/Auth/RequestToken (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7023b930b520>: Failed to resolve 'pay.pesapal.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 717, in post
+    token = get_access_token()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 678, in get_access_token
+    response = requests.post(url, json=data, headers=headers)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='pay.pesapal.com', port=443): Max retries exceeded with url: /v3/api/Auth/RequestToken (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7023b930b520>: Failed to resolve 'pay.pesapal.com' ([Errno -3] Temporary failure in name resolution)"))
+ERROR 2025-02-14 10:33:55,013 log Internal Server Error: /api/auth/pesapal/payment/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 200, in _new_conn
+    sock = connection.create_connection(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1092, in _validate_conn
+    conn.connect()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 604, in connect
+    self.sock = sock = self._new_conn()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 207, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7023b8fe0760>: Failed to resolve 'pay.pesapal.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='pay.pesapal.com', port=443): Max retries exceeded with url: /v3/api/Auth/RequestToken (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7023b8fe0760>: Failed to resolve 'pay.pesapal.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 717, in post
+    token = get_access_token()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 678, in get_access_token
+    response = requests.post(url, json=data, headers=headers)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='pay.pesapal.com', port=443): Max retries exceeded with url: /v3/api/Auth/RequestToken (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7023b8fe0760>: Failed to resolve 'pay.pesapal.com' ([Errno -3] Temporary failure in name resolution)"))
+INFO 2025-02-15 23:00:22,376 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-15 23:00:25,722 log Not Found: /api/contract/
+WARNING 2025-02-15 23:00:25,854 log Not Found: /favicon.ico
+WARNING 2025-02-15 23:00:46,833 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:02:32,525 log Unauthorized: /api/auth/contract/sign/
+INFO 2025-02-15 23:11:52,893 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-15 23:12:00,070 autoreload Watching for file changes with StatReloader
+INFO 2025-02-15 23:12:38,023 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-15 23:12:39,259 autoreload Watching for file changes with StatReloader
+INFO 2025-02-15 23:13:50,740 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-15 23:13:51,946 autoreload Watching for file changes with StatReloader
+INFO 2025-02-15 23:17:49,446 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-15 23:17:50,710 autoreload Watching for file changes with StatReloader
+INFO 2025-02-15 23:20:31,887 autoreload /home/pascal/projects/enceptics/enc/authentication/admin.py changed, reloading.
+INFO 2025-02-15 23:20:33,281 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-15 23:24:04,444 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:24:04,495 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:24:04,564 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:24:04,607 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:25:05,861 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:25:05,909 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:25:05,956 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:25:06,010 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:25:12,040 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:25:12,064 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:25:12,111 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:25:12,165 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:25:48,317 log Unauthorized: /api/auth/contract/sign/
+WARNING 2025-02-15 23:28:23,456 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-15 23:28:23,507 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:30:12,447 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:30:25,827 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:30:25,896 log Not Found: /api/auth/contract/signed/undefined/
+WARNING 2025-02-15 23:50:52,519 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:50:57,627 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:51:06,413 log Method Not Allowed: /api/auth/contract/sign/
+WARNING 2025-02-15 23:51:33,597 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:53:39,666 log Method Not Allowed: /api/auth/contract/sign/
+WARNING 2025-02-15 23:54:40,473 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:55:02,456 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:55:50,449 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:56:01,454 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:56:32,449 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:58:06,552 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:58:27,454 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-15 23:59:58,452 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:00:09,730 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:01:33,099 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:01:33,375 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:01:42,951 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:01:57,272 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:02:08,690 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:02:17,368 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:02:57,276 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:03:01,370 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:03:11,497 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:03:18,346 log Method Not Allowed: /api/auth/contract/sign/
+WARNING 2025-02-16 00:03:55,496 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:04:22,602 log Method Not Allowed: /api/auth/contract/sign/
+WARNING 2025-02-16 00:04:35,385 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:04:56,441 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:09:02,781 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:11:44,930 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:11:55,676 log Method Not Allowed: /api/auth/contract/sign/
+WARNING 2025-02-16 00:13:01,477 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:13:30,568 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:15:19,482 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:15:24,178 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:16:42,695 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:17:15,004 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:17:25,700 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:18:04,612 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:18:27,461 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:18:32,874 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:19:09,568 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:19:16,331 log Method Not Allowed: /api/auth/contract/sign/
+INFO 2025-02-16 00:20:52,145 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:21:11,053 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:21:18,095 log Method Not Allowed: /api/auth/contract/sign/
+INFO 2025-02-16 00:23:33,546 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 00:23:34,871 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:23:44,862 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:24:21,136 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:24:29,862 log Bad Request: /api/auth/contract/sign/
+WARNING 2025-02-16 00:24:42,045 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 00:26:16,012 autoreload /home/pascal/projects/enceptics/enc/authentication/models.py changed, reloading.
+INFO 2025-02-16 00:26:17,283 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 00:26:33,183 autoreload /home/pascal/projects/enceptics/enc/authentication/models.py changed, reloading.
+INFO 2025-02-16 00:26:34,403 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:26:55,118 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:27:54,234 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:28:33,742 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:29:21,842 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:29:31,730 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:29:55,624 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 00:31:39,350 autoreload /home/pascal/projects/enceptics/enc/authentication/models.py changed, reloading.
+INFO 2025-02-16 00:31:40,586 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 00:32:39,942 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 00:32:51,543 autoreload /home/pascal/projects/enceptics/enc/authentication/models.py changed, reloading.
+INFO 2025-02-16 00:32:52,709 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 00:33:00,202 autoreload /home/pascal/projects/enceptics/enc/authentication/models.py changed, reloading.
+INFO 2025-02-16 00:33:01,327 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 00:33:06,510 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:33:07,707 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:33:12,379 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 00:34:16,582 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:34:17,925 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:34:33,680 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:34:55,232 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:35:26,886 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:35:27,011 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:37:23,464 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 00:37:38,534 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:37:39,815 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:37:43,258 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 00:38:12,613 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:38:13,930 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:38:21,282 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 00:38:59,666 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:39:00,848 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 00:39:04,638 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+ERROR 2025-02-16 00:39:04,678 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+ERROR 2025-02-16 00:39:07,756 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+ERROR 2025-02-16 00:39:07,832 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+INFO 2025-02-16 00:40:25,351 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:40:26,450 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 00:40:33,543 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+ERROR 2025-02-16 00:40:33,553 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+INFO 2025-02-16 00:40:39,299 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:40:40,744 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 00:40:47,161 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+ERROR 2025-02-16 00:40:47,234 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 507, in to_representation
+    for field in fields:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 368, in _readable_fields
+    for field in self.fields.values():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 356, in fields
+    for key, value in self.get_fields().items():
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1052, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 1148, in get_field_names
+    assert field_name in fields, (
+AssertionError: The field 'signed_status' was declared on serializer ContractSerializer, but has not been included in the 'fields' option.
+INFO 2025-02-16 00:41:39,352 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:41:40,590 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 00:41:45,480 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'ContractSerializer' object has no attribute 'get_is_signed'
+ERROR 2025-02-16 00:41:45,491 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'ContractSerializer' object has no attribute 'get_is_signed'
+INFO 2025-02-16 00:43:02,477 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 00:43:32,597 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'ContractSerializer' object has no attribute 'get_is_signed'
+ERROR 2025-02-16 00:43:32,668 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 56, in retrieve
+    return Response(serializer.data)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 555, in data
+    ret = super().data
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/serializers.py", line 522, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/fields.py", line 1837, in to_representation
+    method = getattr(self.parent, self.method_name)
+AttributeError: 'ContractSerializer' object has no attribute 'get_is_signed'
+INFO 2025-02-16 00:43:47,886 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 00:43:49,014 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 00:43:53,707 log Not Found: /api/auth/contract/signed/1/
+WARNING 2025-02-16 00:44:19,826 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 00:44:19,887 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 00:44:59,033 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 00:44:59,072 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 00:45:54,303 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-16 00:45:54,316 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-16 00:48:16,017 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:48:33,981 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:51:01,489 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:53:37,461 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:53:42,819 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:54:50,464 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:55:20,552 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:55:24,312 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:57:27,629 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:57:43,043 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:58:23,671 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:59:18,156 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:59:22,222 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 00:59:30,897 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:00:10,560 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:00:17,441 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:00:36,772 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:00:41,046 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:02:10,186 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:02:17,349 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:02:22,121 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:04:41,536 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:05:16,283 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:05:24,029 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:07:27,444 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:07:32,402 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:10:55,984 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:12:42,159 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:12:42,208 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:15:23,462 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:15:27,824 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:17:37,453 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:17:42,609 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:21:34,703 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:23:53,174 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:24:09,357 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:38:09,394 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-16 01:38:09,418 log Unauthorized: /api/auth/contract/
+WARNING 2025-02-16 01:39:15,186 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:39:19,867 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:42:43,459 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:42:43,538 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:42:51,919 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:43:03,488 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:43:17,965 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:44:23,519 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:44:26,273 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:50:55,648 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:51:48,728 log Not Found: /api/auth/contract/signed/2/
+INFO 2025-02-16 01:55:44,859 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 01:55:46,315 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 01:55:50,149 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:55:50,151 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:55:57,538 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:55:57,570 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:57:10,063 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:57:16,770 log Not Found: /api/auth/contract/signed/2/
+WARNING 2025-02-16 01:57:36,691 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:57:36,721 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:58:58,889 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:58:58,896 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:59:02,590 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:59:02,743 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 01:59:30,168 log Not Found: /api/auth/contract/signed/2/
+ERROR 2025-02-16 02:00:46,156 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 652, in get
+    raise self.model.MultipleObjectsReturned(
+authentication.models.Contract.MultipleObjectsReturned: get() returned more than one Contract -- it returned 2!
+ERROR 2025-02-16 02:00:46,206 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 652, in get
+    raise self.model.MultipleObjectsReturned(
+authentication.models.Contract.MultipleObjectsReturned: get() returned more than one Contract -- it returned 2!
+INFO 2025-02-16 02:03:28,081 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 02:03:29,427 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 02:03:33,655 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 02:03:33,691 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 02:03:50,240 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 02:03:50,271 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 02:05:53,059 log Not Found: /api/auth/contract/
+WARNING 2025-02-16 02:05:53,096 log Not Found: /api/auth/contract/
+INFO 2025-02-16 02:06:04,823 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 02:06:06,183 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 02:06:10,515 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 652, in get
+    raise self.model.MultipleObjectsReturned(
+authentication.models.Contract.MultipleObjectsReturned: get() returned more than one Contract -- it returned 2!
+ERROR 2025-02-16 02:06:10,516 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 652, in get
+    raise self.model.MultipleObjectsReturned(
+authentication.models.Contract.MultipleObjectsReturned: get() returned more than one Contract -- it returned 2!
+WARNING 2025-02-16 02:06:31,319 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:06:36,032 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:07:31,961 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:08:01,285 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:08:01,323 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:08:11,168 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:08:27,973 log Not Found: /api/auth/contract/signed/4/
+INFO 2025-02-16 02:10:57,259 autoreload /home/pascal/projects/enceptics/enc/authentication/models.py changed, reloading.
+INFO 2025-02-16 02:10:58,610 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 02:11:16,422 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-16 02:11:17,751 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 02:14:52,028 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 02:14:53,361 autoreload Watching for file changes with StatReloader
+ERROR 2025-02-16 02:15:48,035 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: authentication_contract.contract_image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: authentication_contract.contract_image
+ERROR 2025-02-16 02:15:57,869 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: authentication_contract.contract_image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: authentication_contract.contract_image
+ERROR 2025-02-16 02:15:57,897 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: authentication_contract.contract_image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: authentication_contract.contract_image
+ERROR 2025-02-16 02:16:12,144 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: authentication_contract.contract_image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: authentication_contract.contract_image
+ERROR 2025-02-16 02:16:12,241 log Internal Server Error: /api/auth/contract/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: no such column: authentication_contract.contract_image
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/generics.py", line 208, in get
+    return self.retrieve(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/mixins.py", line 54, in retrieve
+    instance = self.get_object()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 1033, in get_object
+    return get_object_or_404(Contract, user=user)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/shortcuts.py", line 86, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 645, in get
+    num = len(clone)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 382, in __len__
+    self._fetch_all()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 354, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: no such column: authentication_contract.contract_image
+INFO 2025-02-16 02:16:35,799 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 02:16:40,276 log Not Found: /api/auth/contract/signed/4/
+WARNING 2025-02-16 02:17:42,592 log Not Found: /api/auth/contract/signed/5/
+INFO 2025-02-16 02:19:54,366 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 02:19:55,685 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 02:20:39,667 log Not Found: /api/auth/contract/signed/6/
+WARNING 2025-02-16 02:25:10,123 log Not Found: /api/auth/contract/signed/6/
+WARNING 2025-02-16 02:25:34,172 log Not Found: /api/auth/contract/signed/6/
+INFO 2025-02-16 15:56:50,904 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 16:00:38,239 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 16:00:39,384 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 16:01:11,279 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 16:01:12,456 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 16:01:47,464 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-16 16:01:48,561 autoreload Watching for file changes with StatReloader
+INFO 2025-02-16 16:20:45,317 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 16:32:18,088 log Unauthorized: /api/users/
+WARNING 2025-02-16 16:32:18,360 log Unauthorized: /api/users/
+WARNING 2025-02-16 16:32:18,384 log Unauthorized: /api/users/
+WARNING 2025-02-16 16:32:18,442 log Unauthorized: /api/users/
+WARNING 2025-02-16 16:52:23,293 log Bad Request: /api/auth/login/
+WARNING 2025-02-16 16:55:24,284 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-16 22:14:33,315 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-16 22:17:16,769 log Bad Request: /api/auth/login/
+WARNING 2025-02-16 22:17:16,802 log Bad Request: /api/auth/login/
+WARNING 2025-02-17 00:15:32,682 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-17 19:14:39,370 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-17 22:35:16,514 log Not Found: /api/auth/contract/signed/1/
+INFO 2025-02-17 22:49:23,087 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-17 22:50:50,533 log Not Found: /api/auth/contract/signed/1/
+ERROR 2025-02-17 22:54:07,634 log Internal Server Error: /api/auth/pesapal/payment/
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1092, in _validate_conn
+    conn.connect()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 635, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 776, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/ssl_.py", line 466, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/ssl_.py", line 510, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3.10/ssl.py", line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/lib/python3.10/ssl.py", line 1100, in _create
+    self.do_handshake()
+  File "/usr/lib/python3.10/ssl.py", line 1371, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/retry.py", line 470, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1092, in _validate_conn
+    conn.connect()
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 635, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/connection.py", line 776, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/ssl_.py", line 466, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/util/ssl_.py", line 510, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "/usr/lib/python3.10/ssl.py", line 513, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/lib/python3.10/ssl.py", line 1100, in _create
+    self.do_handshake()
+  File "/usr/lib/python3.10/ssl.py", line 1371, in do_handshake
+    self._sslobj.do_handshake()
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 600, in post
+    token = get_access_token()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 572, in get_access_token
+    response = requests.post(url, json=data, headers=headers)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+INFO 2025-02-19 00:28:12,632 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 14:36:47,367 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 14:37:33,949 autoreload /home/pascal/projects/enceptics/enc/blog_posts/admin.py changed, reloading.
+INFO 2025-02-19 14:37:35,769 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-19 14:38:33,311 log Not Found: /favicon.ico
+WARNING 2025-02-19 14:48:23,834 log Bad Request: /api/subscriptions/
+WARNING 2025-02-19 15:15:18,644 log Bad Request: /api/subscriptions/
+INFO 2025-02-19 15:19:41,156 autoreload /home/pascal/projects/enceptics/enc/blog_posts/models.py changed, reloading.
+INFO 2025-02-19 15:19:55,522 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 15:27:58,416 autoreload /home/pascal/projects/enceptics/enc/blog_posts/models.py changed, reloading.
+INFO 2025-02-19 15:28:00,086 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 15:32:33,262 autoreload /home/pascal/projects/enceptics/enc/blog_posts/models.py changed, reloading.
+INFO 2025-02-19 15:32:34,554 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 15:33:24,293 autoreload /home/pascal/projects/enceptics/enc/blog_posts/models.py changed, reloading.
+INFO 2025-02-19 15:33:25,492 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 15:33:46,414 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-19 15:35:48,901 log Bad Request: /api/subscriptions/
+INFO 2025-02-19 16:18:29,028 autoreload /home/pascal/projects/enceptics/enc/env/lib/python3.10/site-packages/urllib3/__init__.py changed, reloading.
+INFO 2025-02-19 16:26:41,608 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:27:19,864 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:28:20,137 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:28:42,543 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:29:13,581 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:29:37,442 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:29:53,280 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:29:53,860 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:30:00,568 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:30:01,453 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:30:39,763 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:31:05,867 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:32:18,786 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:32:19,784 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:32:27,343 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:32:28,302 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:32:54,237 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:32:55,169 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:33:09,864 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:33:10,900 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:36:57,955 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:36:58,978 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:38:11,468 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:39:38,640 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-19 16:39:39,716 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:41:26,229 autoreload /home/pascal/projects/enceptics/enc/authentication/serializers.py changed, reloading.
+INFO 2025-02-19 16:41:27,452 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:42:32,713 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-19 16:42:33,672 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:44:48,673 autoreload /home/pascal/projects/enceptics/enc/authentication/views.py changed, reloading.
+INFO 2025-02-19 16:44:49,773 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:45:33,544 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:46:24,202 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:46:25,234 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:46:39,766 autoreload /home/pascal/projects/enceptics/enc/enceptics/settings.py changed, reloading.
+INFO 2025-02-19 16:46:40,835 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:47:51,775 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:48:50,947 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:51:19,785 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-19 16:51:41,631 base view's ManagerPlaceViewset raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 255, in get_queryset
+    if user.role not in ['property_manager', 'manager']:
+AttributeError: 'AnonymousUser' object has no attribute 'role'
+WARNING 2025-02-19 16:51:41,634 base view's ManagerPlaceViewset raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 255, in get_queryset
+    if user.role not in ['property_manager', 'manager']:
+AttributeError: 'AnonymousUser' object has no attribute 'role'
+WARNING 2025-02-19 16:51:41,663 base view's DownloadContractView raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/rest_framework/generics.py", line 112, in get_serializer
+    serializer_class = self.get_serializer_class()
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/rest_framework/generics.py", line 126, in get_serializer_class
+    assert self.serializer_class is not None, (
+AssertionError: 'DownloadContractView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.
+INFO 2025-02-19 16:52:23,004 autoreload Watching for file changes with StatReloader
+INFO 2025-02-19 16:53:40,660 autoreload Watching for file changes with StatReloader
+WARNING 2025-02-19 16:53:44,601 base view's ManagerPlaceViewset raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 255, in get_queryset
+    if user.role not in ['property_manager', 'manager']:
+AttributeError: 'AnonymousUser' object has no attribute 'role'
+WARNING 2025-02-19 16:53:44,604 base view's ManagerPlaceViewset raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/authentication/views.py", line 255, in get_queryset
+    if user.role not in ['property_manager', 'manager']:
+AttributeError: 'AnonymousUser' object has no attribute 'role'
+WARNING 2025-02-19 16:53:44,635 base view's DownloadContractView raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
+Traceback (most recent call last):
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/drf_yasg/inspectors/base.py", line 42, in call_view_method
+    return view_method()
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/rest_framework/generics.py", line 112, in get_serializer
+    serializer_class = self.get_serializer_class()
+  File "/home/pascal/projects/enceptics/enc/venv/lib/python3.10/site-packages/rest_framework/generics.py", line 126, in get_serializer_class
+    assert self.serializer_class is not None, (
+AssertionError: 'DownloadContractView' should either include a `serializer_class` attribute, or override the `get_serializer_class()` method.

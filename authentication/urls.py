@@ -95,5 +95,10 @@ urlpatterns = [
     # Custom itenerary notify managers
     path("notify-managers/", notify_managers, name="notify_managers"),
 
+    # cONTRACT
+    path('contract/', auth_views.ContractDetailView.as_view(), name='contract-detail'),
+    path('contract/sign/', auth_views.SignContractView.as_view(), name='contract-sign'),
+    path('contract/download/', auth_views.DownloadContractView.as_view(), name='contract-download'),
+
 
 ]

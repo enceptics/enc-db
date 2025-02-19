@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Like, Comment, Follower, Blogs
+from .models import BlogPost, Like, Comment, Follower, Blogs, Subscription
 
 # Blog posts
 
@@ -9,6 +9,10 @@ admin.site.register(Like)
 admin.site.register(Comment)
 admin.site.register(Follower)
 admin.site.register(Blogs)
+admin.site.register(Subscription)
+
+
+
 
 
 

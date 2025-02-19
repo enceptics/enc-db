@@ -1,6 +1,6 @@
 from rest_framework import viewsets, status, filters, permissions
-from .models import BlogPost, Like, Comment, Follower, Blogs
-from .serializers import BlogPostSerializer, LikeSerializer, CommentSerializer, FollowerSerializer, BlogsSerializer
+from .models import BlogPost, Like, Comment, Follower, Blogs, Subscription
+from .serializers import BlogPostSerializer, LikeSerializer, CommentSerializer, FollowerSerializer, BlogsSerializer, SubscriptionSerializer
 from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework.decorators import action
@@ -118,3 +118,7 @@ class FollowerViewSet(viewsets.ModelViewSet):
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blogs.objects.all().order_by('-created_at')
     serializer_class = BlogsSerializer
+
+class SubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
